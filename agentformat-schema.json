@@ -96,7 +96,7 @@
         "namespace": {
           "type": "string",
           "pattern": "^[a-z0-9][a-z0-9_.\\-]*$",
-          "description": "Organizational scope (e.g. acme-corp.finance). Used by registries for namespace isolation and governance policy matching."
+          "description": "Organizational scope (e.g. myorg.finance). Used by registries for namespace isolation and governance policy matching."
         }
       }
     },
@@ -121,7 +121,14 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["object", "string", "number", "integer", "boolean", "array"],
+          "enum": [
+            "object",
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "array"
+          ],
           "description": "The JSON Schema type. When omitted, the schema uses other keywords (enum, anyOf, $ref) to define the shape."
         }
       }
@@ -198,7 +205,7 @@
         "policy_ref": {
           "type": "string",
           "pattern": "^[a-z0-9][a-z0-9_.\\-]*$",
-          "description": "Unique identifier for a governance policy in the Policy Registry. Convention: <org>.<team>.<policy-name>[-<version>]."
+          "description": "Unique identifier for a governance policy in the Policy Registry. Convention: \u003Corg\u003E.\u003Cteam\u003E.\u003Cpolicy-name\u003E[-\u003Cversion\u003E]."
         },
         "required": {
           "type": "boolean",
@@ -263,7 +270,7 @@
               "description": {
                 "type": "string"
               },
-              "allow_tools": {
+              "allowed_tools": {
                 "type": "array",
                 "items": {
                   "$ref": "#/$defs/McpToolRef"
@@ -352,7 +359,7 @@
                 },
                 "description": "Media types the parent expects to receive."
               },
-              "allow_skills": {
+              "allowed_skills": {
                 "type": "array",
                 "items": {
                   "$ref": "#/$defs/SkillRef"
@@ -376,7 +383,7 @@
         "id": {
           "type": "string",
           "minLength": 1,
-          "description": "Policy identifier. Standard policies: 'agf.react', 'agf.sequential', 'agf.parallel', 'agf.loop', 'agf.batch', 'agf.conditional'. Vendor/runtime extensions use 'x-<vendor>.*' prefix (e.g. 'x-acme.custom_react')."
+          "description": "Policy identifier. Standard policies: 'agf.react', 'agf.sequential', 'agf.parallel', 'agf.loop', 'agf.batch', 'agf.conditional'. Vendor/runtime extensions use 'x-\u003Cvendor\u003E.*' prefix (e.g. 'x-myruntime.custom_react')."
         },
         "config": {
           "type": "object",
@@ -548,7 +555,7 @@
             },
             "custom_transform": {
               "type": "string",
-              "description": "Reference to a runtime-registered transformation function. The runtime passes all sub-agent outputs to this function and uses its return value as the final output. Convention: <org>.<transform-name> (e.g. 'acme.summarize_outputs'). Mutually exclusive with agent and strategy."
+              "description": "Reference to a runtime-registered transformation function. The runtime passes all sub-agent outputs to this function and uses its return value as the final output. Convention: \u003Corg\u003E.\u003Ctransform-name\u003E (e.g. 'myorg.summarize_outputs'). Mutually exclusive with agent and strategy."
             },
             "description": {
               "type": "string",
